@@ -9,8 +9,7 @@ before_install:
 
 
 script:
-  - docker run smdasim/docker-react npm run test --  --coverage
-
+  - docker run -e CI=true smdasim/docker-react npm run test
 
 deploy:
   provider: elasticbeanstalk
