@@ -3,6 +3,9 @@ FROM node:alpine
 WORKDIR '/app'
 
 COPY package.json .
+
+RUN CI=true //NOTE
+
 RUN npm install
 
 COPY . .
