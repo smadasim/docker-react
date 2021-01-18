@@ -7,20 +7,18 @@ services:
 before_install:
   - docker build -t smdasim/docker-react -f Dockerfile.dev .
 
-
 script:
-  - docker run smdasim/docker-react npm run test --  --coverage
-
+  - docker run -e CI=true smdasim/docker-react npm run test
 
 deploy:
   provider: elasticbeanstalk
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: 
+  secure: $AWS_SECRET_KEY
   region: 'us-east-1'
-  app: 'docker'
+  app: 'docker-react'
   env: 'DockerReact-env'
-  bucket_name: 'elasticbeanstalk-us-east-1-361808305504'
-
-  bucket_path: 'docker'
+  bucket_name: 'elasticbeanstalk-us-east-1-863404411791'
+  bucket_path: 'docker-react'
   on:
     branch: master
-  access_key_id: $AWS_ACCESS_KEY
-  secret_access_key: $AWS_SECRET_KEY
