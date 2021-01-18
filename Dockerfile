@@ -3,6 +3,9 @@ WORKDIR '/app'
 COPY package.json .
 RUN npm install
 COPY . .
+
+RUN CI=true //NOTE
+
 RUN npm run build
 
 FROM nginx
